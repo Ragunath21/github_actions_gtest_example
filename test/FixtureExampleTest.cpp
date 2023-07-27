@@ -1,7 +1,6 @@
 #include "gtest/gtest.h"
-class C{};
 
- 
+class C{};
 
 class B
 {
@@ -10,9 +9,7 @@ class B
    //universal object creation
    B(C* addressofObject): ptr(addressofObject){
    }
-};
-
- 
+}; 
 
 class A
 {
@@ -27,26 +24,51 @@ class A
 
 };
 
- 
+//Sharing Resources Between Tests in the Same Test Suite
+class FixtureExampleTest : public testing::Test {
+    //Always this class should be protected
+    protected:
+    A* aPtr;
+    B* bPtr;
+    C* cPtr;
 
-TEST(TestFixtureObject, operationTest)
-{
-    //Arrange
-   C cObj;
-   B bObj(&cObj);
-   A aObj(&bObj);
-   //Act and assert
-   ASSERT_TRUE(aObj.operation());
+    //Method 1 - Using constructor and destructor for consume & destory the object
+    //Constructor
+    FixtureExampleTest(){
+        //initialization
+    }
+
+    //Destructor
+    ~FixtureExampleTest(){
+        //Releasing the object
+    }
+
+    //Method 2 - GTest framework methods to perform initialization & destruction of objects
+    // Called before the first test in this test suite.
+    void SetUpTestSuite() {
+        //Create resources
+        this->cPtr=new C();
+        this->bPtr = new B(cPtr);
+        this->aPtr = new A(bPtr);
+    }
+    
+    // Called after the last test in this test suite.
+    void TearDownTestSuite() {
+        //Delete resources
+        delete aPtr;
+        delete bPtr;
+        delete cPtr;
+
+    }
+
+};
+
+TEST_F(TestFixtureTestSuite, OperationTrueTest){
+    //Act and Assert
+    ASSERT_TRUE(aPtr->operation());
 }
 
- 
-
-TEST(TestFixtureObject, operationFalseTest)
-{
-    //Arrange
-   C cObj;
-   B bObj(&cObj);
-   A aObj(&bObj);
-   //Act and assert
-   ASSERT_FALSE(aObj.operation());
+TEST_F(TestFixtureTestSuite, OperationFalseTest){
+    //Act and Assert
+    ASSERT_FALSE(aPtr->operation());
 }

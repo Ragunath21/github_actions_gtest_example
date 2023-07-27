@@ -20,7 +20,7 @@ class A {
     }
 };
 
-TEST("TestFixtureTestSuite", "OperationTest"){
+TEST(TestFixtureTestSuite, OperationTest){
     //Arrange
     C cObj;
     B bObj(aObj);
@@ -29,7 +29,7 @@ TEST("TestFixtureTestSuite", "OperationTest"){
     ASSERT_TRUE(aObj.operation());
 }
 
-TEST("TestFixtureTestSuite", "OperationTest"){
+TEST(TestFixtureTestSuite, OperationTest){
     //Arrange
     C cObj;
     B bObj(aObj);

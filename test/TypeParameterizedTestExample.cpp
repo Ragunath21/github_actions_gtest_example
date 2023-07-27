@@ -51,3 +51,22 @@ TYPED_TEST_SUITE(TempSensorFixture, Implementations);
 TYPED_TEST(TempSensorFixture,GetTempTest){
     ASSERT_EQ(this->objUnderTest->getOutSideTemp(),23);
 }
+
+//Interaction Based testing
+
+//Fake dependency
+class FakeTempSensor: public ITempSensor{
+    public:
+    public:
+    int getOutsideTemp(){
+        return 0;
+    }
+}
+
+//Test Suite
+TEST(AutoTempRegulatorTestSuite, RegulateTempTest){
+    FakeTempSensor stub;
+    AutoTempRegulator codeUnderTest(stub);
+    codeUnderTest.regulateTemp();
+}
+

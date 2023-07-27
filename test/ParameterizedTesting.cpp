@@ -29,7 +29,7 @@ TEST_P(MultipleParametersTestFixture, ValidateInputs) {
     int expectedValue = std::get<2>(GetParam());
     int actualValue = divFun(numerator,denomiator);
     ASSERT_EQ(expectedValue, actualValue);
-};
+}
 
 INSTANTIATE_TEST_SUITE_P(        
         MultipleParametersTestFixtureParameters,

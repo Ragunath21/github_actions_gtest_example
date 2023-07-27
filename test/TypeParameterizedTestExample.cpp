@@ -55,10 +55,12 @@ TYPED_TEST(TempSensorFixture,GetTempTest){
 //Interaction Based testing
 
 //Fake dependency
-class FakeTempSensor: public ITempSensor{
+class FakeTempSensor:public ITempSensor{
     public:
     public:
+    int getOutsideTempCallCount=0;
     int getOutsideTemp(){
+        getOutsideTempCallCount=getOutsideTempCallCount+1;
         return 0;
     }
 };

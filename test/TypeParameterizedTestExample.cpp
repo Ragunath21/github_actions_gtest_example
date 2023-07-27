@@ -66,8 +66,9 @@ class FakeTempSensor:public ITempSensor{
 
 //Test Suite
 TEST(AutoTempRegulatorTestSuite, RegulateTempTest){
-    FakeTempSensor stub;
-    AutoTempRegulator codeUnderTest(&stub);
+    FakeTempSensor mockObj;
+    AutoTempRegulator codeUnderTest(&mockObj);
     codeUnderTest.regulateTemp();
+    ASSERT_EQ(mockObj.getOutSideTempCallCount,1);
 }
 

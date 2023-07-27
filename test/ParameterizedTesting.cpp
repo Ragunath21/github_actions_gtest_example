@@ -1,37 +1,27 @@
 #include <gtest/gtest.h>
 
 int divFun(int numerator,int denominator){
-
-    if(denominator==0 || denominator < 0){
-        return 0;
-    }
+    if(denominator==0 || denominator < 0){return 0;} 
 
     return numerator/denominator;
 }
 
-class MultipleParametersTestFixture :public ::testing::TestWithParam<std::tuple<int, int, int>> {
+class DivFunTestSuite: public::testing::TestWithParam<std::tuple<int,int,int>>{
 protected:
-
-    //Constructor
-    MultipleParametersTestFixture(){}
-
-    //Destructor
-    ~MultipleParametersTestFixture(){}
+DivFunTestSuite(){}
+~DivFunTestSuite(){}
 };
 
-TEST_P(MultipleParametersTestFixture, ValidateInputs) {
-    int numerator = std::get<0>(GetParam());;
-    int denomiator = std::get<1>(GetParam());
-    int expectedValue = std::get<2>(GetParam());
-    int actualValue = divFun(numerator,denomiator);
+TEST_P(DivFunTestSuite,HandleValidInputs){
+    int numerator=std::get<0>(GetParam());
+    int denomiator=std::get<1>(GetParam());
+    int expectedValue=std::get<2>(GetParam());
+    int actualValue=divFun(numerator,denomiator);
     ASSERT_EQ(actualValue,expectedValue);
 }
-
-INSTANTIATE_TEST_SUITE_P(        
-        MultipleParametersTestFixtureParameters,
-        MultipleParametersTestFixture,
-        ::testing::Values(
-                std::make_tuple(10, 5, 2),
-                std::make_tuple(10, 0, 2),
-                std::make_tuple(10, -5, 2)
-	));
+INSTANTIATE_TEST_SUITE_P(DivFunTestSuiteParameterExample,DivFunTestSuite,
+::testing::Values(
+    std::make_tuple(10,5,2),
+    std::make_tuple(10,0,0),
+    std::make_tuple(10,-5,0)
+));

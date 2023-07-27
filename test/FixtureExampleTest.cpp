@@ -63,12 +63,12 @@ class FixtureExampleTest : public testing::Test {
 
 };
 
-TEST_F(TestFixtureTestSuite, OperationTrueTest){
+TEST_F(FixtureExampleTest, OperationTrueTest){
     //Act and Assert
     ASSERT_TRUE(aPtr->operation());
 }
 
-TEST_F(TestFixtureTestSuite, OperationFalseTest){
+TEST_F(FixtureExampleTest, OperationFalseTest){
     //Act and Assert
     ASSERT_FALSE(aPtr->operation());
 }

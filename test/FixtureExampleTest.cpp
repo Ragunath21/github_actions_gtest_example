@@ -45,7 +45,7 @@ class FixtureExampleTest : public testing::Test {
 
     //Method 2 - GTest framework methods to perform initialization & destruction of objects
     // Called before the first test in this test suite.
-    void SetUpTestSuite() {
+    void SetUp() {
         //Create resources
         this->cPtr=new C();
         this->bPtr = new B(cPtr);
@@ -53,7 +53,7 @@ class FixtureExampleTest : public testing::Test {
     }
     
     // Called after the last test in this test suite.
-    void TearDownTestSuite() {
+    void TearDown() {
         //Delete resources
         delete aPtr;
         delete bPtr;

@@ -13,14 +13,10 @@ class MultipleParametersTestFixture :public ::testing::TestWithParam<std::tuple<
 protected:
 
     //Constructor
-    MultipleParametersTestFixture(){
-
-    }
+    MultipleParametersTestFixture(){}
 
     //Destructor
-    ~MultipleParametersTestFixture(){
-
-    }
+    ~MultipleParametersTestFixture(){}
 };
 
 TEST_P(MultipleParametersTestFixture, ValidateInputs) {
@@ -28,7 +24,7 @@ TEST_P(MultipleParametersTestFixture, ValidateInputs) {
     int denomiator = std::get<1>(GetParam());
     int expectedValue = std::get<2>(GetParam());
     int actualValue = divFun(numerator,denomiator);
-    ASSERT_EQ(expectedValue, actualValue);
+    ASSERT_EQ(actualValue,expectedValue);
 }
 
 INSTANTIATE_TEST_SUITE_P(        
@@ -37,4 +33,5 @@ INSTANTIATE_TEST_SUITE_P(
         ::testing::Values(
                 std::make_tuple(10, 5, 2),
                 std::make_tuple(10, 0, 2),
-                std::make_tuple(10, -5, 2)));
+                std::make_tuple(10, -5, 2)
+	));

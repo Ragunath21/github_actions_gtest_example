@@ -1,39 +1,52 @@
-#include<gtest/gtest.h>
+#include "gtest/gtest.h"
+class C{};
 
-class C {};
-class B {
-    C* ptr;
-    public: 
-    B(C* addressOfObject): ptr(addressOfObject){
+ 
 
-    }
+class B
+{
+   C* ptr;
+   public:
+   //universal object creation
+   B(C* addressofObject): ptr(addressofObject){
+   }
 };
 
-class A {
-    B* ptr;
-    public: 
-    A(B* addressOfObject): ptr(addressOfObject){
+ 
 
-    }
-    bool operation(){
-        return true;
-    }
+class A
+{
+   B* ptr;
+   public:
+   //universal object creation
+   A(B* addressofObject): ptr(addressofObject){
+   }
+   bool operation(){
+     return true;
+   }
+
 };
 
-TEST(TestFixtureTestSuite, OperationTest){
+ 
+
+TEST(TestFixtureObject, operationTest)
+{
     //Arrange
-    C cObj;
-    B bObj(&aObj);
-    A aObj(&bObj);
-    //Act
-    ASSERT_TRUE(aObj.operation());
+   C cObj;
+   B bObj(&cObj);
+   A aObj(&bObj);
+   //Act and assert
+   ASSERT_TRUE(aObj.operation());
 }
 
-TEST(TestFixtureTestSuite, OperationTest){
+ 
+
+TEST(TestFixtureObject, operationFalseTest)
+{
     //Arrange
-    C cObj;
-    B bObj(&aObj);
-    A aObj(&bObj);
-    //Act
-    ASSERT_FALSE(aObj.operation());
+   C cObj;
+   B bObj(&cObj);
+   A aObj(&bObj);
+   //Act and assert
+   ASSERT_FALSE(aObj.operation());
 }

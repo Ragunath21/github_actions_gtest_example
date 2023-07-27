@@ -23,8 +23,8 @@ class A {
 TEST(TestFixtureTestSuite, OperationTest){
     //Arrange
     C cObj;
-    B bObj(aObj);
-    A aObj(bObj);
+    B bObj(&aObj);
+    A aObj(&bObj);
     //Act
     ASSERT_TRUE(aObj.operation());
 }
@@ -32,8 +32,8 @@ TEST(TestFixtureTestSuite, OperationTest){
 TEST(TestFixtureTestSuite, OperationTest){
     //Arrange
     C cObj;
-    B bObj(aObj);
-    A aObj(bObj);
+    B bObj(&aObj);
+    A aObj(&bObj);
     //Act
     ASSERT_FALSE(aObj.operation());
 }

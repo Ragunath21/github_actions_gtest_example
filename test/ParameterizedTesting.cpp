@@ -31,9 +31,9 @@ TEST_P(MultipleParametersTestFixture, ValidateInputs) {
     ASSERT_EQ(expectedValue, actualValue);
 };
 
-INSTANTIATE_TEST_SUITE_P(
-        MultipleParametersTestFixture,
+INSTANTIATE_TEST_SUITE_P(        
         MultipleParametersTestFixtureParameters,
+        MultipleParametersTestFixture,
         ::testing::Values(
                 std::make_tuple(10, 5, 2),
                 std::make_tuple(10, 0, 2),
